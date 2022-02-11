@@ -12,6 +12,9 @@
                     <div class="flex justify-center md:justify-start pt-12">
                         <img class="m-auto" src="{{asset('logo.png')}}" alt="">
                     </div>
+                    <div class="flex justify-center md:justify-start pt-2">
+                        <h1 style="font-size: 32px;text-align: center;font-weight: bold;margin-bottom: 21px;">Magellan Case Tracking System</h1>
+                    </div>
 
                     <form method="POST" action="{{ route('login') }}">
                         @csrf

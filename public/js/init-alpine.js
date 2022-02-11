@@ -40,6 +40,10 @@ function data() {
     toggleProfileMenu() {
       this.isProfileMenuOpen = !this.isProfileMenuOpen
     },
+    isUserMenuOpne: false,
+    toggleUserMenu() {
+      this.isUserMenuOpne = !this.isUserMenuOpne
+    },
     closeProfileMenu() {
       this.isProfileMenuOpen = false
     },

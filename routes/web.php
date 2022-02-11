@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MagellanCaseController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +25,17 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware(['auth'])->group(function(){
+    
+    Route::get('userlist',[UserController::class,'userlist'])->name('userlist');
     Route::resource('user',UserController::class);
+
+    Route::resource('case',MagellanCaseController::class);
+    Route::get('phase1',[MagellanCaseController::class,'phase1'])->name('phase1');
+    Route::get('phase2a',[MagellanCaseController::class,'phase2a'])->name('phase2a');
+    Route::get('phase2b',[MagellanCaseController::class,'phase2b'])->name('phase2b');
+    Route::get('phase3',[MagellanCaseController::class,'phase3'])->name('phase3');
+    Route::get('phase4',[MagellanCaseController::class,'phase4'])->name('phase4');
+
 });
 
 require __DIR__.'/auth.php';

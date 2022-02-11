@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\MagellanCase;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,38 @@ class MagellanCaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+
+        $data = User::with('phase1')->where('isAdmin','no')->paginate(5);     
+     
+       
+
+        return view('cases.index',[
+            'title' => 'PHASE 1',
+            'rows' => $data
+        ]);
+    }
+
+
+    public function phase1()
+    {
+        $data = User::with('phase1')->where('isAdmin','no')->paginate(5);
+
+        return view('cases.index',[
+            'title' => 'PHASE 1',
+            'rows' => $data
+        ]);
+    }
+
+
+    public function phase2()
+    {
+        $data = User::with('phase1')->where('isAdmin','no')->paginate(5);
+        return view('cases.index',[
+            'title' => 'PHASE 1',
+            'rows' => $data
+        ]);
     }
 
     /**
@@ -24,7 +54,9 @@ class MagellanCaseController extends Controller
      */
     public function create()
     {
-        //
+        return view('cases.create',[
+            'title' => "Create New Case"
+        ]);
     }
 
     /**
@@ -82,4 +114,6 @@ class MagellanCaseController extends Controller
     {
         //
     }
+
+    
 }

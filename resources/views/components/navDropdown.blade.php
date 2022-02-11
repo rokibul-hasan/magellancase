@@ -1,7 +1,7 @@
-<li class="relative px-6 py-3">
+<li class="relative px-6 py-3" x-data="{ open: false }">
   <button
       class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-      @click="togglePagesMenu" aria-haspopup="true">
+      @click="open = ! open" aria-haspopup="true">
       <span class="inline-flex items-center">
           <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
               stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -17,7 +17,7 @@
               clip-rule="evenodd"></path>
       </svg>
   </button>
-  <template x-if="isPagesMenuOpen">
+  <div x-show="open">
       <ul x-transition:enter="transition-all ease-in-out duration-300"
           x-transition:enter-start="opacity-25 max-h-0"
           x-transition:enter-end="opacity-100 max-h-xl"
@@ -28,5 +28,5 @@
           aria-label="submenu">
           {{$slot}}
       </ul>
-  </template>
+    </div>
 </li>
