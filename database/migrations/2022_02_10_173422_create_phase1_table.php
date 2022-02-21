@@ -16,6 +16,7 @@ class CreatePhase1Table extends Migration
         Schema::create('phase1', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
+            $table->string('case_number',25)->nullable();
             $table->enum('administrator',['no','yes']);
             $table->dateTime('claim_form_maild_date')->nullable();
             $table->dateTime('claim_form_receive_date')->nullable();
@@ -29,8 +30,8 @@ class CreatePhase1Table extends Migration
             $table->dateTime('release_of_bond_maild_date')->nullable();
             $table->dateTime('release_of_bond_receive_date')->nullable();
             $table->text('release_of_bond_comment')->nullable();            
-            $table->enum('phase1',['pending','complete','canceled']);
-            $table->enum('probated_estate',['none','yes','no']);
+            $table->enum('status',['pending','complete','canceled']);
+            $table->foreignId('updated_by');
             $table->timestamps();
         });
     }

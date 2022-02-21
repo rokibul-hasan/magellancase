@@ -50,13 +50,24 @@ class User extends Authenticatable
 
     public function phase1()
     {
-        return $this->hasOne(Phase1::class)->withDefault(function($phase1,$user){
-            $phase1->fill([
-                'phase1' => 'pending',
-                'probated_estate' => 'no'
-            ]);
-
-            $user->phase1()->save($phase1);
-        });
+        return $this->hasOne(Phase1::class);
     }
+
+    public function phase2a()
+    {
+        return $this->hasOne(Phase2a::class);
+    }
+
+
+    // public function phase1()
+    // {
+    //     return $this->hasOne(Phase1::class)->withDefault(function($phase1,$user){
+    //         $phase1->fill([
+    //             'phase1' => 'pending',
+    //             'probated_estate' => 'no'
+    //         ]);
+
+    //         $user->phase1()->save($phase1);
+    //     });
+    // }
 }

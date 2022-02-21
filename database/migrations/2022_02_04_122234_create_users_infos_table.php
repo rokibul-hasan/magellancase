@@ -23,7 +23,8 @@ class CreateUsersInfosTable extends Migration
             $table->string('zip',12)->nullable();
             $table->string('phone1',25)->nullable();
             $table->string('phone2',25)->nullable();
-            $table->text('comment');
+            $table->text('comment')->nullable();
+            $table->string('case_number',25)->nullable();
             $table->timestamps();
         });
     }

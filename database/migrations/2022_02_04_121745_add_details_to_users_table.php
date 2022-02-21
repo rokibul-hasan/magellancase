@@ -16,6 +16,7 @@ class AddDetailsToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->enum('isAdmin',['no','yes']);       
             $table->enum('isActive',['no','yes']);       
+            
         });
     }
 

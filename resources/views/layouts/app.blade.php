@@ -5,24 +5,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ config('app.name') }}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
         <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="{{asset('/')}}js/alpine.min.js" defer></script>
     <script src="{{ asset('/') }}js/init-alpine.js"></script>
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" /> --}}
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer></script> --}}
     {{-- <script src="{{ asset('/') }}js/charts-lines.js" defer></script> --}}
     {{-- <script src="{{ asset('/') }}js/charts-pie.js" defer></script> --}}
-    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{asset('/')}}css/toster.css">
+    {{-- <link rel="stylesheet" href="{{ asset('/') }}css/font-awsome.css" /> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{asset('/')}}css/dataTables.min.css">
+    <link rel="stylesheet" href="{{asset('/')}}css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{asset('/')}}css/pikaday.css">
+    <script src="{{asset('/')}}js/moment.min.js"></script>
+    <script src="{{asset('/')}}js/pikaday.js"></script>
+    <style>
+        .inlineTableBorder input{
+            border:1px solid #999!important;
+            padding:2px 5px;
+            height:30px;
+            color:#000;
+        }
+        .inlineTableBorder textarea{
+            color:#000;
+        }
+    </style>
+
+    @livewireStyles
 </head>
 
 <body>
+    
+
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
         @include('partials.sidebar')
         <div class="flex flex-col flex-1 w-full">
@@ -40,13 +56,19 @@
 
 
     <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{asset('/')}}js/toastr.min.js"></script>
+    <script src="{{asset('/')}}js/jquery.dataTables.min.js"></script>
+    <script src="{{asset('/')}}js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        window.livewire.on('alert_remove',()=>{
+         setTimeout(function(){ $("#flashMessage").fadeOut('fast');
+         }, 5000);
+    </script>
     {!! Toastr::message() !!}
     @stack('footer-js')
     @stack('script')
+    
+    @livewireScripts
 </body>
 
 </html>

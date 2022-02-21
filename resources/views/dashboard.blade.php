@@ -5,5 +5,5 @@
         </h2>
     </x-slot>
 
-   @include('page')
+   
 </x-app-layout>
